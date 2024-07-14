@@ -14,6 +14,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
@@ -26,5 +28,11 @@ router.register(r'notes', note_views.NoteView, 'note')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+    path('api/', include(router.urls)), 
+    path('api/recipes/<int:recipe_id>/like/', recipe_views.like_recipe, name='like_recipe'),
+    path('api/recipes/<int:recipe_id>/unlike/', recipe_views.unlike_recipe, name='unlike_recipe'),
 ]
+# Serve static and media files during development
+if settings.DEBUG:
+    # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

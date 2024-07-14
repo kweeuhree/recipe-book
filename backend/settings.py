@@ -127,7 +127,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+# configure to serve media files
+MEDIA_URL = '/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -140,3 +144,5 @@ CORS_ORIGIN_WHITELIST = [
 
 # Allow credentials (cookies, Authorization headers, etc.) to be included in cross-origin requests
 CORS_ALLOW_CREDENTIALS = True
+
+

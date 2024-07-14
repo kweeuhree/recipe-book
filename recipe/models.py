@@ -12,7 +12,12 @@ class Recipe(models.Model):
     servings = models.PositiveIntegerField(help_text="Number of servings")
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
+    isLiked = models.BooleanField(default=False)
     image = models.ImageField(upload_to='recipe_images/', blank=True, null=True)
+
+    # Order by date_created in descending order
+    class Meta:
+        ordering = ['-date_created']  
 
     def __str__(self):
         return self.title
