@@ -31,6 +31,7 @@ urlpatterns = [
     path('api/', include(router.urls)), 
     path('api/recipes/<int:recipe_id>/like/', recipe_views.like_recipe, name='like_recipe'),
     path('api/recipes/<int:recipe_id>/unlike/', recipe_views.unlike_recipe, name='unlike_recipe'),
+    path('api/recipes/<int:recipe_id>/notes/', recipe_views.notes, name='notes'),
 ]
 # Serve static and media files during development
 if settings.DEBUG:

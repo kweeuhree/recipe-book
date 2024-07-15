@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import RecipeSerializer
-from .models import Recipe
+from .serializers import NoteSerializer
+from recipe.models import Recipe
+from note.models import Note
 
 
 # Create your views here.
@@ -40,3 +43,17 @@ def unlike_recipe(request, recipe_id):
     recipe.isLiked = False
     recipe.save()
     return Response({'status': 'unliked'})
+
+@api_view(['POST'])
+def notes(request, recipe_id):
+    try:
+        recipe = Recipe.objects.get(id=recipe_id)
+    except Recipe.DoesNotExist:
+        return Response({"error": "Recipe not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'POST':
+        serializer = NoteSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(recipe=recipe)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
