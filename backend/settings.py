@@ -31,10 +31,15 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG') == 'True'
 
 ALLOWED_HOSTS = [
-        'http://localhost:3000',
-        'localhost'
+    'localhost',
+    '127.0.0.1',
+    '[::1]',
 ]
 
+# CSRF_TRUSTED_ORIGINS= [
+#     'http://localhost',
+#     'http://localhost:3000',
+# ]
 
 # Application definition
 
@@ -55,7 +60,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -140,7 +145,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_WHITELIST = [
-     'http://localhost:3000'
+     'http://localhost:3000',
+     'http://localhost', 
 ]
 
 # Allow credentials (cookies, Authorization headers, etc.) to be included in cross-origin requests
