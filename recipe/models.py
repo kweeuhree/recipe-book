@@ -1,10 +1,12 @@
 from django.db import models
+import uuid
 
 # Create your models here.
 
 # create class
 class Recipe(models.Model):
     #create attributes
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     ingredients = models.TextField()

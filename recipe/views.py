@@ -6,8 +6,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import RecipeSerializer
 from .serializers import NoteSerializer
+from rest_framework.decorators import action
 from recipe.models import Recipe
 from note.models import Note
+import uuid
 
 
 # Create your views here.
@@ -44,20 +46,6 @@ def unlike_recipe(request, recipe_id):
     recipe.save()
     return Response({'status': 'unliked'})
 
-@api_view(['POST'])
-def notes(request, recipe_id):
-    try:
-        recipe = Recipe.objects.get(id=recipe_id)
-    except Recipe.DoesNotExist:
-        return Response({"error": "Recipe not found"}, status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'POST':
-        serializer = NoteSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(recipe=recipe)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 @api_view(['DELETE'])
 def delete_recipe(request, recipe_id):
     try:
@@ -68,3 +56,43 @@ def delete_recipe(request, recipe_id):
     if request.method == 'DELETE':
         recipe.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['POST'])
+def notes(request, recipe_id):
+    try:
+        if not isinstance(recipe_id, str):
+            recipe_id = str(recipe_id)
+            
+        recipe_uuid = uuid.UUID(recipe_id)
+        recipe = Recipe.objects.get(id=recipe_uuid)
+    except Recipe.DoesNotExist:
+        return Response({"error": "Recipe not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'POST':
+        serializer = NoteSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(recipe=recipe)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+# @api_view(['DELETE'])
+# def delete_note(request, recipe_id,note_id):
+#     print(note_id, 'note id')
+#     try:
+#         note = Note.objects.get(id=note_id)
+#     except Note.DoesNotExist:
+#         return Response({"error":"Note not found"}, status=status.HTTP_404_NOT_FOUND)
+    
+#     if request.method == 'DELETE':
+#         note.delete()
+#         return Response(stateus=status.HTTP_204_NO_CONTENT)
+    
+@api_view(['DELETE'])
+def delete_note(request, recipe_id, note_id):
+    print(note_id, 'note id')
+    try:
+        note = Note.objects.get(id=note_id, recipe_id=recipe_id)
+        note.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    except Note.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)

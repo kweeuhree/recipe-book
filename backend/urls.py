@@ -29,11 +29,11 @@ router.register(r'notes', note_views.NoteView, 'note')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)), 
-    path('api/recipes/<int:recipe_id>/like/', recipe_views.like_recipe, name='like_recipe'),
-    path('api/recipes/<int:recipe_id>/unlike/', recipe_views.unlike_recipe, name='unlike_recipe'),
-    path('api/recipes/<int:recipe_id>/notes/', recipe_views.notes, name='notes'),
-    path('api/recipes/<int:recipe_id>', recipe_views.delete_recipe, name='delete_recipe'),
-    path('api/recipes/<int:pk>/notes/<int:note_id>/', include(router.urls)),
+    path('api/recipes/<uuid:recipe_id>/like/', recipe_views.like_recipe, name='like_recipe'),
+    path('api/recipes/<uuid:recipe_id>/unlike/', recipe_views.unlike_recipe, name='unlike_recipe'),
+    path('api/recipes/<uuid:recipe_id>/notes/', recipe_views.notes, name='notes'),
+    path('api/recipes/<uuid:recipe_id>', recipe_views.delete_recipe, name='delete_recipe'),
+    path('api/recipes/<uuid:recipe_id>/notes/<int:note_id>/', recipe_views.delete_note, name='recipe-note-delete' ),
 ]
 # Serve static and media files during development
 if settings.DEBUG:

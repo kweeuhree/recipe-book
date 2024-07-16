@@ -10,4 +10,12 @@ from note.models import Note
 class NoteView(viewsets.ModelViewSet):
     serializer_class = NoteSerializer
     queryset = Note.objects.all()
+
+    def destroy(self, request, *args, **kwargs):
+        try:
+            note = self.get_object()
+            note.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Note.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
     
