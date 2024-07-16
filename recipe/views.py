@@ -56,7 +56,22 @@ def delete_recipe(request, recipe_id):
     if request.method == 'DELETE':
         recipe.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+@api_view(['PUT'])
+def put_recipe(request, recipe_id):
+    try:
+        recipe = Recipe.objects.get(id=recipe_id)
+    except Recipe.DoesNotExist:
+        return Response({"error": "Recipe not found"}, status=status.HTTP_404_NOT_FOUND)
 
+    if request.method == 'PUT':
+        serializer = RecipeSerializer(recipe, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+## notes ##
 @api_view(['POST'])
 def notes(request, recipe_id):
     try:
@@ -74,18 +89,6 @@ def notes(request, recipe_id):
             serializer.save(recipe=recipe)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-# @api_view(['DELETE'])
-# def delete_note(request, recipe_id,note_id):
-#     print(note_id, 'note id')
-#     try:
-#         note = Note.objects.get(id=note_id)
-#     except Note.DoesNotExist:
-#         return Response({"error":"Note not found"}, status=status.HTTP_404_NOT_FOUND)
-    
-#     if request.method == 'DELETE':
-#         note.delete()
-#         return Response(stateus=status.HTTP_204_NO_CONTENT)
     
 @api_view(['DELETE'])
 def delete_note(request, recipe_id, note_id):
