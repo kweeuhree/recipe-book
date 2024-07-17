@@ -17,8 +17,9 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, re_path, include
 from rest_framework import routers
+from .views import home_page
 from recipe import views as recipe_views
 from note import views as note_views
 
@@ -35,6 +36,8 @@ urlpatterns = [
     path('api/recipes/<uuid:recipe_id>', recipe_views.delete_recipe, name='delete_recipe'),
     path('api/recipes/<uuid:recipe_id>', recipe_views.put_recipe, name='put_recipe'),
     path('api/recipes/<uuid:recipe_id>/notes/<int:note_id>/', recipe_views.delete_note, name='recipe-note-delete' ),
+
+    re_path(r'^.*$', home_page),  # Catch-all route
 ]
 # Serve static and media files during development
 if settings.DEBUG:
