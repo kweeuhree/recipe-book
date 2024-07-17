@@ -1,5 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 
 
 def home_page(request):
-    return render(request, 'index.html')
+    return redirect('https://your-s3-bucket-url.s3.amazonaws.com/index.html')

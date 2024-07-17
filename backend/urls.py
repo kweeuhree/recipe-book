@@ -36,7 +36,7 @@ urlpatterns = [
     path('api/recipes/<uuid:recipe_id>', recipe_views.delete_recipe, name='delete_recipe'),
     path('api/recipes/<uuid:recipe_id>', recipe_views.put_recipe, name='put_recipe'),
     path('api/recipes/<uuid:recipe_id>/notes/<int:note_id>/', recipe_views.delete_note, name='recipe-note-delete' ),
-
+    path('home/', home_page),
     re_path(r'^.*$', home_page),  # Catch-all route
 ]
 # Serve static and media files during development
