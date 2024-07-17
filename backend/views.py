@@ -1,5 +1,5 @@
-from django.shortcuts import redirect
+from django.shortcuts import render
 
 
 def home_page(request):
-    return redirect('http://django-react-bucket.s3.amazonaws.com/')
+    return render(request, 'index.html')
