@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          node-version: '20'
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -39,5 +37,7 @@ jobs:
           script: |
             cd /home/ubuntu/recipe-book-django
             git pull
+            source /home/ubuntu/env/bin/activate
+            pip install -r requirements.txt
             sudo systemctl restart gunicorn
             sudo systemctl restart nginx

@@ -33,7 +33,7 @@ DEBUG = os.environ.get('DEBUG') == 'True'
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    '3.141.17.82',
+    '3.145.94.65',
     'django-react-bucket.s3-website.us-east-2.amazonaws.com'
 ]
 
