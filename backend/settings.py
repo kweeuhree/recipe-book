@@ -42,7 +42,7 @@ CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000',
      'http://localhost', 
      'http://django-react-bucket.s3-website.us-east-2.amazonaws.com',
-     'https://d1dqkx2ygh51km.cloudfront.net/'
+     'http://d1dqkx2ygh51km.cloudfront.net/'
 ]
 
 # Allow credentials (cookies, Authorization headers, etc.) to be included in cross-origin requests
