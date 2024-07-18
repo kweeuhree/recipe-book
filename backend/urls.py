@@ -38,7 +38,7 @@ urlpatterns = [
     path('api/recipes/<uuid:recipe_id>/notes/<int:note_id>/', recipe_views.delete_note, name='recipe-note-delete' ),
     path('', home_page, name='home'),
     re_path(r'^.*$', home_page),  # Catch-all route
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] 
 # Serve static and media files during development
 if settings.DEBUG:
     # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
