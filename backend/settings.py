@@ -34,9 +34,19 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '3.145.94.65',
-    'django-react-bucket.s3-website.us-east-2.amazonaws.com'
+    'django-react-bucket.s3-website.us-east-2.amazonaws.com',
+    'd1dqkx2ygh51km.cloudfront.net'
 ]
 
+CORS_ORIGIN_WHITELIST = [
+     'http://localhost:3000',
+     'http://localhost', 
+     'http://django-react-bucket.s3-website.us-east-2.amazonaws.com',
+     'https://d1dqkx2ygh51km.cloudfront.net/'
+]
+
+# Allow credentials (cookies, Authorization headers, etc.) to be included in cross-origin requests
+CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
 
@@ -144,13 +154,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ORIGIN_WHITELIST = [
-     'http://localhost:3000',
-     'http://localhost', 
-     'http://django-react-bucket.s3-website.us-east-2.amazonaws.com',
-]
 
-# Allow credentials (cookies, Authorization headers, etc.) to be included in cross-origin requests
-CORS_ALLOW_CREDENTIALS = True
 
 
