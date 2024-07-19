@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '3.145.94.65',
+    '13.59.147.18',
     'django-react-bucket.s3-website.us-east-2.amazonaws.com',
     'd1dqkx2ygh51km.cloudfront.net'
 ]
