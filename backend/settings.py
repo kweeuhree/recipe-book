@@ -34,8 +34,9 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '3.145.94.65',
-    '13.59.147.18',
+    '13.59.147.18'
     'django-react-bucket.s3-website.us-east-2.amazonaws.com',
+    'ec2-13-59-147-18.us-east-2.compute.amazonaws.com',
     'd1dqkx2ygh51km.cloudfront.net'
 ]
 
@@ -43,7 +44,7 @@ CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000',
      'http://localhost', 
      'http://django-react-bucket.s3-website.us-east-2.amazonaws.com',
-     'http://d1dqkx2ygh51km.cloudfront.net/'
+     'http://d1dqkx2ygh51km.cloudfront.net'
 ]
 
 # Allow credentials (cookies, Authorization headers, etc.) to be included in cross-origin requests
