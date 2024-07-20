@@ -48,10 +48,7 @@
 <h3>Features</h3>
 <li>Create, Read, Update, Delete (CRUD) operations for recipes and notes</li>
 <li>Like/Unlike recipes</li>
-<li>Mobile-first design</li>
 
 <h3>Future Enhancements</h3>
 <li>User Authentication</li>
-<li>Refactoring to TypeScript</li>
-<li>Efficient content delivery with AWS CloudFront</li>
 <li>Placement of the EC2 instance into a custom VPC on a private subnet</li>
