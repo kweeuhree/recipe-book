@@ -84,10 +84,15 @@ def notes(request, recipe_id):
         return Response({"error": "Recipe not found"}, status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'POST':
+        body = request.data.get('body', '')
+        if len(body) > 500:
+            return Response({'error': 'Note body exceeds 500 characters.'}, status=status.HTTP_400_BAD_REQUEST)
+    
         serializer = NoteSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(recipe=recipe)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 @api_view(['DELETE'])

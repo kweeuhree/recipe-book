@@ -10,7 +10,7 @@ class Note(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='notes', null=True, blank=True)
     date_created = models.DateTimeField(default=get_default_date_created)
     date_updated = models.DateTimeField(auto_now=True)
-    body = models.TextField(max_length=300)
+    body = models.TextField(max_length=500)
     isLiked = models.BooleanField(default=False)
 
     def __str__(self):

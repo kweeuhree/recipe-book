@@ -28,6 +28,7 @@ router.register(r'recipes', recipe_views.RecipeView, 'recipe')
 router.register(r'notes', note_views.NoteView, 'note')
 
 urlpatterns = [
+    path('', home_page, name='home'),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)), 
     path('api/recipes/<uuid:recipe_id>/like/', recipe_views.like_recipe, name='like_recipe'),
@@ -36,7 +37,6 @@ urlpatterns = [
     path('api/recipes/<uuid:recipe_id>/', recipe_views.delete_recipe, name='delete_recipe'),
     path('api/recipes/<uuid:recipe_id>/', recipe_views.put_recipe, name='put_recipe'),
     path('api/recipes/<uuid:recipe_id>/notes/<int:note_id>/', recipe_views.delete_note, name='recipe-note-delete' ),
-    path('', home_page, name='home'),
     re_path(r'^.*$', home_page),  # Catch-all route
 ] 
 # Serve static and media files during development
