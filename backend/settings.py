@@ -39,7 +39,7 @@ ALLOWED_HOSTS = [
     'ec2-13-59-147-18.us-east-2.compute.amazonaws.com', # private
 ]
 
-CORS_ORIGIN_WHITELIST = [
+CORS_ALLOWED_ORIGINS = [
      'http://localhost:3000',
      'http://localhost', 
      'http://django-react-bucket.s3-website.us-east-2.amazonaws.com', # http s3 bucket
