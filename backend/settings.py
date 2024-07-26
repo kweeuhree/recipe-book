@@ -42,7 +42,8 @@ ALLOWED_HOSTS = [
 CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000',
      'http://localhost', 
-     'http://django-react-bucket.s3-website.us-east-2.amazonaws.com', # s3 bucket
+     'http://django-react-bucket.s3-website.us-east-2.amazonaws.com', # http s3 bucket
+     'https://django-react-bucket.s3-website.us-east-2.amazonaws.com', # https s3 bucket
      'http://d1dqkx2ygh51km.cloudfront.net', # http cloudfront
      'https://d1dqkx2ygh51km.cloudfront.net', # https cloudfront
      'https://simple-recipe-book.com', # domain
