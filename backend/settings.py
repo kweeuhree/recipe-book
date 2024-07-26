@@ -31,19 +31,21 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG') == 'True'
 
 ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '3.145.94.65',
-    '13.59.147.18'
-    'ec2-13-59-147-18.us-east-2.compute.amazonaws.com',
+    'localhost', # dev
+    '127.0.0.1', # dev
+    'simple-recipe-book.com', # domain
+    '3.145.94.65', # current ec2 instance
+    '13.59.147.18', # private
+    'ec2-13-59-147-18.us-east-2.compute.amazonaws.com', # private
 ]
 
 CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000',
      'http://localhost', 
-     'http://django-react-bucket.s3-website.us-east-2.amazonaws.com',
-     'http://d1dqkx2ygh51km.cloudfront.net',
-     'https://d1dqkx2ygh51km.cloudfront.net',
+     'http://django-react-bucket.s3-website.us-east-2.amazonaws.com', # s3 bucket
+     'http://d1dqkx2ygh51km.cloudfront.net', # http cloudfront
+     'https://d1dqkx2ygh51km.cloudfront.net', # https cloudfront
+     'https://simple-recipe-book.com', # domain
 ]
 
 # Allow credentials (cookies, Authorization headers, etc.) to be included in cross-origin requests
@@ -138,9 +140,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
-
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'dist')
@@ -150,11 +149,22 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'dist')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+## https configuration ##
 
+# secure cookies
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# redirect http to https
+SECURE_SSL_REDIRECT = True
+
+# HTTP Strict Transport Security (HSTS) configuration
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+ 
 
