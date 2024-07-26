@@ -50,7 +50,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 # Allow credentials (cookies, Authorization headers, etc.) to be included in cross-origin requests
-CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_CREDENTIALS = True
 
 # logging 
 # LOGGING = {
@@ -180,15 +180,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ## https configuration ##
 
 # secure cookies
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
 
-# redirect http to https
-SECURE_SSL_REDIRECT = True
+# # redirect http to https
+# SECURE_SSL_REDIRECT = True
 
-# HTTP Strict Transport Security (HSTS) configuration
-SECURE_HSTS_SECONDS = 31536000  # 1 year
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
+# # HTTP Strict Transport Security (HSTS) configuration
+# SECURE_HSTS_SECONDS = 31536000  # 1 year
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
  
 
