@@ -52,6 +52,27 @@ CORS_ALLOWED_ORIGINS = [
 # Allow credentials (cookies, Authorization headers, etc.) to be included in cross-origin requests
 CORS_ALLOW_CREDENTIALS = True
 
+# logging 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/home/ubuntu/recipe-book-django/django_debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+
 # Application definition
 
 INSTALLED_APPS = [
